@@ -1,9 +1,9 @@
-<h1>5d4</h1>
+<h1><%= @num_dice %>d<%= @size_die %></h1> 
 
 <ul>
   <% @rolls.each do |a_roll| %>
     <li>
-      <%= a_roll %>
+      <%=a_roll%>
     </li>
   <% end %>
 </ul>

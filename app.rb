@@ -5,50 +5,17 @@ get("/") do
   erb(:homepage)
 end
 
-get("/dice/2/6") do
+get("/dice/:num_dice/:size_die") do  #doesn't matter what is after the :, it is whatever the user inputs
+  @num_dice = params.fetch("num_dice").to_i #params is built into sinatra to allow us to pull in input from the user
+  @size_die = params.fetch("size_die").to_i
+
   @rolls = []
 
-  2.times do
-    die = rand(1..6)
+  @num_dice.times do
+    die = rand(1..@size_die)
 
     @rolls.push(die)
   end
 
-  erb(:two_six)
-end
-
-get("/dice/2/10") do
-  @rolls = []
-
-  2.times do
-    die = rand(1..10)
-
-    @rolls.push(die)
-  end
-
-  erb(:two_ten)
-end
-
-get("/dice/1/20") do
-  @rolls = []
-
-  1.times do
-    die = rand(1..20)
-
-    @rolls.push(die)
-  end
-
-  erb(:one_twenty)
-end
-
-get("/dice/5/4") do
-  @rolls = []
-
-  5.times do
-    die = rand(1..4)
-
-    @rolls.push(die)
-  end
-
-  erb(:five_four)
+  erb(:flexible)
 end
